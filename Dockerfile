@@ -3,6 +3,11 @@ FROM php:7.4-apache
 # Set the working directory
 WORKDIR /var/www/html
 
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the source code into the container
 COPY src/ /var/www/html/
 
@@ -16,7 +21,7 @@ RUN a2enmod rewrite
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy composer.json and composer.lock
-COPY composer.json composer.lock /var/www/html/
+COPY composer.json /var/www/html/
 
 # Install Composer dependencies
 RUN composer install
