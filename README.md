@@ -13,6 +13,7 @@ statamic-docker-compose
 │       └── index.php
 ├── vendor
 │   └── autoload.php
+├── composer.json
 ├── docker-compose.yml
 ├── Dockerfile
 └── README.md

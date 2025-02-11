@@ -2,14 +2,13 @@ version: '3.8'
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
-      - "80:80"
+      - "8000:80"
     volumes:
-      - ./src/public:/var/www/html
-      - ./src/statamic:/var/www/statamic
+      - ./src:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
     networks:
       - statamic-network
 

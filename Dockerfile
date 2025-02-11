@@ -22,6 +22,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy composer.json and composer.lock
 COPY composer.json /var/www/html/
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+RUN service apache2 restart
 # Install Composer dependencies
 RUN composer install
